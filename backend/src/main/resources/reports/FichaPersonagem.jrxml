@@ -1,0 +1,358 @@
+<!-- Created with Jaspersoft Studio version 7.0.3.final using JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd  -->
+<jasperReport name="FichaPersonagem" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0343696e-216b-4631-877d-cd08436379cc">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<style name="LabelFundoAzul" mode="Opaque" forecolor="#FFFFFF" backcolor="#3D318F" hTextAlign="Center" vTextAlign="Middle" fontName="Trebuchet MS">
+		<pen lineWidth="25.0" lineColor="#030000"/>
+		<box padding="1">
+			<pen lineWidth="0.25"/>
+		</box>
+	</style>
+	<style name="textoVariavel" hTextAlign="Center" vTextAlign="Middle" blankWhenNull="true" fontName="Trebuchet MS" fontSize="10.0">
+		<pen lineWidth="1.0" lineColor="#030000"/>
+		<box padding="0">
+			<pen lineWidth="0.25"/>
+			<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+			<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+			<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+			<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+		</box>
+	</style>
+	<dataset name="subDSEquipamentos" uuid="234ff6f5-db88-4e37-aa5f-a9f9405a569d">
+		<field name="nome" class="java.lang.String"/>
+		<field name="tipo" class="java.lang.String"/>
+		<field name="danoDefesa" class="java.lang.String"/>
+		<field name="observacao" class="java.lang.String"/>
+	</dataset>
+	<dataset name="subDSPericia" uuid="5e42aec4-125d-46ae-ae7b-d6b7028b6794">
+		<field name="pericia" class="java.lang.String"/>
+		<field name="valor_1" class="java.lang.String"/>
+		<field name="valor_2" class="java.lang.String"/>
+	</dataset>
+	<dataset name="subDSItens" uuid="a8c00b81-c158-4d05-850e-753a2ccc308c">
+		<field name="_THIS" class="java.lang.String"/>
+	</dataset>
+	<parameter name="nomeJogador" class="java.lang.String"/>
+	<parameter name="nomePersonagem" class="java.lang.String"/>
+	<parameter name="sexoPersonagem" class="java.lang.String"/>
+	<parameter name="idadePersonagem" class="java.lang.String"/>
+	<parameter name="arquetipoPersonagem" class="java.lang.String"/>
+	<parameter name="especializacaoPersonagem" class="java.lang.String"/>
+	<parameter name="nivelPersonagem" class="java.lang.String"/>
+	<parameter name="expPersonagem" class="java.lang.String"/>
+	<parameter name="atributoForca" class="java.lang.String"/>
+	<parameter name="atributoDestreza" class="java.lang.String"/>
+	<parameter name="atributoInteligencia" class="java.lang.String"/>
+	<parameter name="atributoConstituicao" class="java.lang.String"/>
+	<parameter name="atributoCarisma" class="java.lang.String"/>
+	<parameter name="pontosDeVida" class="java.lang.String"/>
+	<parameter name="pontosDeInstamina" class="java.lang.String"/>
+	<parameter name="dinheiro" class="java.lang.String"/>
+	<parameter name="aparenciaFisica" class="java.lang.String"/>
+	<parameter name="listPericias" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<parameter name="listItens" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<parameter name="listEquipamentos" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<title height="35" splitType="Stretch">
+		<element kind="staticText" uuid="5123af09-d4e4-4854-a08f-2f2740b10bce" mode="Transparent" x="80" y="3" width="399" height="29" forecolor="#3D318F" fontName="Helvetica" fontSize="19.0" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Ficha de Personagem - NewSigmaRPG]]></text>
+		</element>
+	</title>
+	<detail>
+		<band height="650" splitType="Stretch">
+			<element kind="staticText" uuid="39788d67-5ddf-4716-a91e-68ac7f37cee6" stretchType="NoStretch" mode="Opaque" x="0" y="0" width="60" height="17" forecolor="#FFFFFF" backcolor="#3D318F" fontName="Trebuchet MS" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[Jogador]]></text>
+				<box padding="1">
+					<pen lineWidth="0.25" lineColor="#030303"/>
+				</box>
+			</element>
+			<element kind="staticText" uuid="975bb794-b91b-400e-a1b7-3bbb7707bc50" stretchType="NoStretch" mode="Opaque" x="170" y="0" width="70" height="17" forecolor="#FFFFFF" backcolor="#3D318F" fontName="Trebuchet MS" bold="true" hTextAlign="Center" vTextAlign="Middle" style="LabelFundoAzul">
+				<text><![CDATA[Personagem]]></text>
+				<box padding="1" style="LabelFundoAzul">
+					<pen lineWidth="0.25" lineColor="#030303"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="93152675-e861-4d68-87d3-474e97cf62b1" x="60" y="0" width="110" height="17" fontName="Trebuchet MS" hTextAlign="Center" vTextAlign="Middle" style="textoVariavel">
+				<expression><![CDATA[$P{nomeJogador}]]></expression>
+				<box padding="1" style="textoVariavel">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="e7cc6b96-26b0-4910-a16c-f566182c40be" x="240" y="0" width="120" height="17" fontName="Trebuchet MS" hTextAlign="Center" vTextAlign="Middle" style="textoVariavel">
+				<expression><![CDATA[$P{nomePersonagem}]]></expression>
+				<box padding="1" style="textoVariavel">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</element>
+			<element kind="staticText" uuid="3b74c66b-c2f5-43ad-aa99-7f2d2019090c" x="360" y="0" width="40" height="17" style="LabelFundoAzul">
+				<text><![CDATA[Sexo]]></text>
+				<box padding="1" style="LabelFundoAzul"/>
+			</element>
+			<element kind="textField" uuid="20389161-6cb1-44fc-819e-65bc83e22237" x="400" y="0" width="50" height="17" style="textoVariavel">
+				<expression><![CDATA[$P{sexoPersonagem}]]></expression>
+			</element>
+			<element kind="staticText" uuid="f6af2a34-914a-4734-a196-578dcb3bbede" x="450" y="0" width="50" height="17" style="LabelFundoAzul">
+				<text><![CDATA[Idade]]></text>
+				<box padding="1" style="LabelFundoAzul"/>
+			</element>
+			<element kind="textField" uuid="99a83162-be2e-4c38-a863-0b18afbc4e9c" key="" x="500" y="0" width="55" height="17" style="textoVariavel">
+				<expression><![CDATA[$P{idadePersonagem}]]></expression>
+			</element>
+			<element kind="staticText" uuid="6b48dee2-e703-4b12-bbf1-7e55cdb1f2a0" stretchType="NoStretch" mode="Opaque" x="0" y="17" width="70" height="17" forecolor="#FFFFFF" backcolor="#3D318F" fontName="Trebuchet MS" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[Arquétipo]]></text>
+				<box padding="1">
+					<pen lineWidth="0.25" lineColor="#030303"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="8a00a337-7793-49d4-96c2-acd4f2fddd34" x="70" y="17" width="130" height="17" style="textoVariavel">
+				<expression><![CDATA[$P{arquetipoPersonagem}]]></expression>
+			</element>
+			<element kind="staticText" uuid="51fd8d19-41c2-4f82-8788-729930026045" stretchType="NoStretch" mode="Opaque" x="200" y="17" width="80" height="17" forecolor="#FFFFFF" backcolor="#3D318F" fontName="Trebuchet MS" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[Especialização]]></text>
+				<box padding="1">
+					<pen lineWidth="0.25" lineColor="#030303"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="f560e369-e2b6-4d44-b639-ecfec2b1f166" x="280" y="17" width="130" height="17" style="textoVariavel">
+				<expression><![CDATA[$P{especializacaoPersonagem}]]></expression>
+			</element>
+			<element kind="staticText" uuid="2e8c0eab-20ea-40ef-b03f-57f6dcadc648" x="410" y="17" width="40" height="17" style="LabelFundoAzul">
+				<text><![CDATA[Nivel]]></text>
+				<box padding="1" style="LabelFundoAzul"/>
+			</element>
+			<element kind="staticText" uuid="0c6e08d3-1683-4fbf-8e1e-07da4654f0c8" x="479" y="17" width="40" height="17" style="LabelFundoAzul">
+				<text><![CDATA[Exp]]></text>
+				<box padding="1" style="LabelFundoAzul"/>
+			</element>
+			<element kind="textField" uuid="2995c35d-0a4b-417e-8f49-f4723cec29bc" x="450" y="17" width="29" height="17" style="textoVariavel">
+				<expression><![CDATA[$P{nivelPersonagem}]]></expression>
+			</element>
+			<element kind="textField" uuid="62d98d1a-c15c-4033-ae90-f294bed2fd68" x="519" y="17" width="36" height="17" style="textoVariavel">
+				<expression><![CDATA[$P{expPersonagem}]]></expression>
+			</element>
+			<element kind="staticText" uuid="8fd0a1be-7330-49f1-a4b6-02af8ab65f16" stretchType="NoStretch" mode="Opaque" x="0" y="44" width="110" height="17" forecolor="#FFFFFF" backcolor="#3D318F" fontName="Trebuchet MS" bold="true" hTextAlign="Center" vTextAlign="Middle" style="LabelFundoAzul">
+				<text><![CDATA[FORÇA (FOR)]]></text>
+				<box padding="1" style="LabelFundoAzul">
+					<pen lineWidth="0.25" lineColor="#030303"/>
+				</box>
+			</element>
+			<element kind="staticText" uuid="42f22014-37cc-44a4-be10-c5953388335a" stretchType="NoStretch" mode="Opaque" x="109" y="44" width="116" height="17" forecolor="#FFFFFF" backcolor="#3D318F" fontName="Trebuchet MS" bold="true" hTextAlign="Center" vTextAlign="Middle" style="LabelFundoAzul">
+				<text><![CDATA[DESTREZA (DES)]]></text>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<box padding="1" style="LabelFundoAzul">
+					<pen lineWidth="0.25" lineColor="#030303"/>
+				</box>
+			</element>
+			<element kind="staticText" uuid="d0d05cf8-4f08-403d-b349-49fe72393360" stretchType="NoStretch" mode="Opaque" x="225" y="44" width="110" height="17" forecolor="#FFFFFF" backcolor="#3D318F" fontName="Trebuchet MS" bold="true" hTextAlign="Center" vTextAlign="Middle" style="LabelFundoAzul">
+				<text><![CDATA[INTELIGÊNCIA (INT)]]></text>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<box padding="1" style="LabelFundoAzul">
+					<pen lineWidth="0.25" lineColor="#030303"/>
+				</box>
+			</element>
+			<element kind="staticText" uuid="49da6871-d5bf-497d-becd-e3aef61e05c1" stretchType="NoStretch" mode="Opaque" x="335" y="44" width="110" height="17" forecolor="#FFFFFF" backcolor="#3D318F" fontName="Trebuchet MS" bold="true" hTextAlign="Center" vTextAlign="Middle" style="LabelFundoAzul">
+				<text><![CDATA[CONSTITUIÇÃO (CON)]]></text>
+				<box padding="1" style="LabelFundoAzul">
+					<pen lineWidth="0.25" lineColor="#030303"/>
+				</box>
+			</element>
+			<element kind="staticText" uuid="20ab47e3-1a1f-44ad-b3d3-29cd323d36c0" stretchType="NoStretch" mode="Opaque" x="445" y="44" width="110" height="17" forecolor="#FFFFFF" backcolor="#3D318F" fontName="Trebuchet MS" bold="true" hTextAlign="Center" vTextAlign="Middle" style="LabelFundoAzul">
+				<text><![CDATA[CARISMA (CAR)]]></text>
+				<box padding="1" style="LabelFundoAzul">
+					<pen lineWidth="0.25" lineColor="#030303"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="78fcd1e4-eca3-45f7-bde2-623443599ae0" x="0" y="61" width="109" height="25" fontSize="14.0" style="textoVariavel">
+				<expression><![CDATA[$P{atributoForca}]]></expression>
+			</element>
+			<element kind="textField" uuid="ce1d3e6d-12d0-4f18-9cd4-5c3a0eb95adb" x="109" y="60" width="116" height="26" fontSize="14.0" style="textoVariavel">
+				<expression><![CDATA[$P{atributoDestreza}]]></expression>
+			</element>
+			<element kind="textField" uuid="70fc74a6-8e16-47b8-8b4a-f1ac7f286a5d" x="225" y="60" width="110" height="26" fontSize="14.0" style="textoVariavel">
+				<expression><![CDATA[$P{atributoInteligencia}]]></expression>
+			</element>
+			<element kind="textField" uuid="cc9a74c4-3262-4a7f-bcd7-171efaacf55a" x="335" y="60" width="110" height="26" fontSize="14.0" style="textoVariavel">
+				<expression><![CDATA[$P{atributoConstituicao}]]></expression>
+			</element>
+			<element kind="textField" uuid="933e175d-1da2-46ef-a000-f39932ffd21a" x="445" y="60" width="110" height="26" fontSize="14.0" style="textoVariavel">
+				<expression><![CDATA[$P{atributoCarisma}]]></expression>
+			</element>
+			<element kind="staticText" uuid="1ef44493-3b3f-455a-9dad-5cb8ebf57ce1" stretchType="NoStretch" mode="Opaque" x="0" y="93" width="130" height="17" forecolor="#FFFFFF" backcolor="#3D318F" fontName="Trebuchet MS" bold="true" hTextAlign="Center" vTextAlign="Middle" style="LabelFundoAzul">
+				<text><![CDATA[Pontos de Vida (PV)]]></text>
+				<box padding="1" style="LabelFundoAzul">
+					<pen lineWidth="0.25" lineColor="#030303"/>
+				</box>
+			</element>
+			<element kind="staticText" uuid="7c1a49fa-b657-45a7-b8c9-abebf0116240" stretchType="NoStretch" mode="Opaque" x="130" y="93" width="130" height="17" forecolor="#FFFFFF" backcolor="#3D318F" fontName="Trebuchet MS" bold="true" hTextAlign="Center" vTextAlign="Middle" style="LabelFundoAzul">
+				<text><![CDATA[Estamina (EST)]]></text>
+				<box padding="1" style="LabelFundoAzul">
+					<pen lineWidth="0.25" lineColor="#030303"/>
+				</box>
+			</element>
+			<element kind="staticText" uuid="6e7e5df6-555a-4f5c-8a9f-cc5a1b014a19" stretchType="NoStretch" mode="Opaque" x="260" y="93" width="130" height="17" forecolor="#FFFFFF" backcolor="#3D318F" fontName="Trebuchet MS" bold="true" hTextAlign="Center" vTextAlign="Middle" style="LabelFundoAzul">
+				<text><![CDATA[Dinheiro (DIN)]]></text>
+				<box padding="1" style="LabelFundoAzul">
+					<pen lineWidth="0.25" lineColor="#030303"/>
+				</box>
+			</element>
+			<element kind="staticText" uuid="94d7cc5b-9fd0-433f-adea-1a442abadaec" stretchType="NoStretch" mode="Opaque" x="400" y="93" width="155" height="17" forecolor="#FFFFFF" backcolor="#3D318F" fontName="Trebuchet MS" bold="true" hTextAlign="Center" vTextAlign="Middle" style="LabelFundoAzul">
+				<text><![CDATA[Perícias]]></text>
+				<box padding="1" style="LabelFundoAzul">
+					<pen lineWidth="0.25" lineColor="#030303"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="90bc4204-795e-49e1-a5cf-29aca76dacbc" x="0" y="110" width="130" height="23" fontSize="12.0" hTextAlign="Left" style="textoVariavel">
+				<paragraph leftIndent="20"/>
+				<expression><![CDATA[$P{pontosDeVida}]]></expression>
+				<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+			</element>
+			<element kind="line" uuid="6c2bcd0d-c7ee-4d69-b08e-c5513b45be44" x="63" y="115" width="5" height="12" direction="BottomUp">
+				<property name="com.jaspersoft.studio.element.name" value="teste"/>
+			</element>
+			<element kind="textField" uuid="946e9c4e-2c0e-4265-b1b4-61a06b1ddad1" x="130" y="110" width="130" height="23" fontSize="12.0" hTextAlign="Left" style="textoVariavel">
+				<paragraph leftIndent="20"/>
+				<expression><![CDATA[$P{pontosDeInstamina}]]></expression>
+				<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+			</element>
+			<element kind="line" uuid="8381cad2-5dbf-41b4-a9ba-70b6bd03fd0d" x="190" y="115" width="5" height="12" direction="BottomUp">
+				<property name="com.jaspersoft.studio.element.name" value="teste"/>
+			</element>
+			<element kind="textField" uuid="25f9edff-4010-4bb5-99da-0a81ea17c391" x="260" y="110" width="130" height="23" fontSize="12.0" style="textoVariavel">
+				<expression><![CDATA[$P{dinheiro}]]></expression>
+			</element>
+			<element kind="component" uuid="19b1bc18-637d-465e-a5f3-f38540e518ac" x="400" y="110" width="155" height="16">
+				<component kind="table">
+					<datasetRun uuid="9ef9ca7f-9d3c-4b97-895b-85500c97ecaa" subDataset="subDSPericia">
+						<dataSourceExpression><![CDATA[$P{listPericias}]]></dataSourceExpression>
+					</datasetRun>
+					<column kind="single" uuid="caced337-d775-43be-a59c-321a0020d7f9" width="130">
+						<detailCell height="18">
+							<element kind="textField" uuid="1ba51d90-6f78-45f1-a29a-748e2b834773" stretchType="NoStretch" x="0" y="0" width="130" height="18" fontSize="7.0" hTextAlign="Left" vTextAlign="Middle" style="textoVariavel">
+								<paragraph lineSpacingSize="0.0" leftIndent="3"/>
+								<expression><![CDATA[$F{pericia}]]></expression>
+								<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+								<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+							</element>
+						</detailCell>
+					</column>
+					<column kind="single" uuid="2d3beed5-8a33-4a48-a99d-cdc480b4537d" width="12">
+						<detailCell height="18">
+							<element kind="textField" uuid="e0b1b047-6ff7-432b-b5b8-c0f6fbe3477d" stretchType="NoStretch" x="0" y="0" width="12" height="18" fontSize="12.0" hTextAlign="Center" vTextAlign="Middle" style="textoVariavel">
+								<expression><![CDATA[$F{valor_1}]]></expression>
+								<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+							</element>
+						</detailCell>
+					</column>
+					<column kind="single" uuid="a69e4313-dc01-4000-bcf2-ee440c85cdf0" width="12">
+						<detailCell height="18">
+							<element kind="textField" uuid="e1512679-7981-4e9a-a1e7-81fc79dd2127" stretchType="NoStretch" x="0" y="0" width="12" height="18" fontSize="12.0" hTextAlign="Center" vTextAlign="Middle" style="textoVariavel">
+								<expression><![CDATA[$F{valor_2}]]></expression>
+							</element>
+						</detailCell>
+					</column>
+				</component>
+				<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="staticText" uuid="6a13a956-d26f-4b2f-b380-760e9e516619" stretchType="NoStretch" mode="Opaque" x="0" y="140" width="190" height="17" forecolor="#FFFFFF" backcolor="#3D318F" fontName="Trebuchet MS" bold="true" hTextAlign="Center" vTextAlign="Middle" style="LabelFundoAzul">
+				<text><![CDATA[Itens]]></text>
+				<box padding="1" style="LabelFundoAzul">
+					<pen lineWidth="0.25" lineColor="#030303"/>
+				</box>
+			</element>
+			<element kind="component" uuid="bf3000ed-d639-416d-a159-d19ff5aed011" x="0" y="157" width="190" height="200" style="textoVariavel">
+				<component kind="table">
+					<datasetRun uuid="8b7987ca-c578-42ab-a8e4-e6379bb68703" subDataset="subDSItens">
+						<dataSourceExpression><![CDATA[$P{listItens}]]></dataSourceExpression>
+					</datasetRun>
+					<column kind="single" uuid="fcd03dc6-622b-4ed8-b6c3-3b7b7ceb754d" width="190">
+						<detailCell height="18">
+							<element kind="textField" uuid="bf1dc870-eb5e-495b-a4d7-d874c227b399" x="0" y="0" width="190" height="18" fontSize="9.0" hTextAlign="Left" vTextAlign="Middle" style="textoVariavel">
+								<paragraph leftIndent="3"/>
+								<expression><![CDATA[$F{_THIS}]]></expression>
+							</element>
+						</detailCell>
+					</column>
+				</component>
+			</element>
+			<element kind="staticText" uuid="c6c2444b-12b7-4f36-9f5a-3d905adc1850" stretchType="NoStretch" mode="Opaque" x="196" y="140" width="194" height="17" forecolor="#FFFFFF" backcolor="#3D318F" fontName="Trebuchet MS" bold="true" hTextAlign="Center" vTextAlign="Middle" style="LabelFundoAzul">
+				<text><![CDATA[Aparência Física]]></text>
+				<box padding="1" style="LabelFundoAzul">
+					<pen lineWidth="0.25" lineColor="#030303"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="e019e59e-7056-4f63-8c1e-b0424e43ba06" x="196" y="157" width="194" height="200" hTextAlign="Left" vTextAlign="Top" style="textoVariavel">
+				<paragraph leftIndent="3" rightIndent="3" spacingBefore="3" spacingAfter="3"/>
+				<expression><![CDATA[$P{aparenciaFisica}]]></expression>
+				<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+				<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+				<property name="com.jaspersoft.studio.unit.spacingAfter" value="px"/>
+			</element>
+			<element kind="staticText" uuid="ad02731b-19d1-4e72-92ab-8f3a77d3e912" stretchType="NoStretch" mode="Opaque" x="0" y="360" width="390" height="17" forecolor="#FFFFFF" backcolor="#3D318F" fontName="Trebuchet MS" bold="true" hTextAlign="Center" vTextAlign="Middle" style="LabelFundoAzul">
+				<text><![CDATA[Equipamentos]]></text>
+				<box padding="1" style="LabelFundoAzul">
+					<pen lineWidth="0.25" lineColor="#030303"/>
+				</box>
+			</element>
+			<element kind="staticText" uuid="bc0c4454-cd2a-46a9-8266-5aa518d17d33" x="0" y="377" width="140" height="16" backcolor="#37568C" style="LabelFundoAzul">
+				<text><![CDATA[Nome]]></text>
+			</element>
+			<element kind="staticText" uuid="6f46dd7c-dce4-469b-b70f-18780a0abe78" x="140" y="377" width="50" height="16" backcolor="#37568C" style="LabelFundoAzul">
+				<text><![CDATA[Tipo]]></text>
+			</element>
+			<element kind="staticText" uuid="1172d1f4-b94f-45b7-9d20-43bbad49cae2" x="190" y="377" width="80" height="16" backcolor="#37568C" style="LabelFundoAzul">
+				<text><![CDATA[Dano / Defesa]]></text>
+			</element>
+			<element kind="staticText" uuid="4e8c7fa7-5a02-4ac6-ad33-330a7d8a2188" x="270" y="377" width="120" height="16" backcolor="#37568C" style="LabelFundoAzul">
+				<text><![CDATA[Observação]]></text>
+			</element>
+			<element kind="component" uuid="c34baec4-a84c-49bb-ace9-5c385eebf931" x="0" y="393" width="390" height="140">
+				<component kind="table">
+					<datasetRun uuid="0e3c5036-9484-4b9b-bd01-d6c84d50ce36" subDataset="subDSEquipamentos">
+						<dataSourceExpression><![CDATA[$P{listEquipamentos}]]></dataSourceExpression>
+					</datasetRun>
+					<column kind="single" uuid="7c7e4a81-e83d-4e00-88c3-a53bbbf66e93" width="140">
+						<detailCell height="18">
+							<element kind="textField" uuid="1ac49fde-5235-4be8-81c5-ae6169306580" x="0" y="0" width="140" height="18" hTextAlign="Left" vTextAlign="Middle" style="textoVariavel">
+								<paragraph leftIndent="3" rightIndent="3" style="textoVariavel"/>
+								<expression><![CDATA[$F{nome}]]></expression>
+								<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+								<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+							</element>
+						</detailCell>
+					</column>
+					<column kind="single" uuid="88d41f04-c9cf-4738-af16-23b476f0c315" width="50">
+						<detailCell height="18">
+							<element kind="textField" uuid="e9cfa5bb-2586-4140-bfc5-b88bfcebafdf" x="0" y="0" width="50" height="18" hTextAlign="Center" vTextAlign="Middle" style="textoVariavel">
+								<expression><![CDATA[$F{tipo}]]></expression>
+							</element>
+						</detailCell>
+					</column>
+					<column kind="single" uuid="e2acca0a-587e-4cf6-b5e1-14cf8e35d126" width="80">
+						<detailCell height="18">
+							<element kind="textField" uuid="ea038bb7-d30a-4065-8be1-9cd9328fe661" x="0" y="0" width="80" height="18" hTextAlign="Center" vTextAlign="Middle" style="textoVariavel">
+								<expression><![CDATA[$F{danoDefesa}]]></expression>
+							</element>
+						</detailCell>
+					</column>
+					<column kind="single" uuid="8a0c5de5-6388-4666-9631-5a971820db50" width="120">
+						<detailCell height="18">
+							<element kind="textField" uuid="d23f5ba2-0ed3-41b4-a719-72436ec22d55" x="0" y="0" width="120" height="18" hTextAlign="Left" vTextAlign="Middle" style="textoVariavel">
+								<paragraph leftIndent="2" style="textoVariavel"/>
+								<expression><![CDATA[$F{observacao}]]></expression>
+								<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+							</element>
+						</detailCell>
+					</column>
+				</component>
+			</element>
+		</band>
+	</detail>
+</jasperReport>
