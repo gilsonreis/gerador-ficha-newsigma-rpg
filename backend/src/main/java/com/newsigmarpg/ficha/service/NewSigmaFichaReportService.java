@@ -54,6 +54,8 @@ public class NewSigmaFichaReportService {
 
         params.put("aparenciaFisica", request.getAparenciaFisica());
 
+        params.put("historiaPersonagem", request.getHistoriaPersonagem());
+
         List<PericiaReportDTO> pericias =
                 periciaReportAssembler.montar(request);
 
@@ -101,7 +103,7 @@ public class NewSigmaFichaReportService {
     private List<EquipamentoDTO> padEquipamentos(
             List<EquipamentoDTO> itens
     ) {
-        final int MAX = 10;
+        final int MAX = 13;
 
         List<EquipamentoDTO> result = new ArrayList<>();
         if (itens != null) {

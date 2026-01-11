@@ -31,6 +31,8 @@ public class NewSigmaFichaRequest {
     private String dinheiro;
     private String aparenciaFisica;
 
+    private String historiaPersonagem;
+
     List<String> items;
     ArrayList<EquipamentoDTO> equipamentos;
 
