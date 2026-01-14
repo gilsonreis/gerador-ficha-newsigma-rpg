@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .card {
+    @apply bg-white rounded-2xl shadow-md p-5;
+  }
+
+  .card-title {
+    @apply text-base font-semibold text-indigo-700 mb-4;
+  }
+
+  .input {
+    @apply w-full rounded-xl border border-slate-300
+    px-4 py-3 text-base
+    focus:outline-none
+    focus:ring-2 focus:ring-indigo-500
+    focus:border-indigo-500;
+  }
+
+  .input-sm {
+    @apply w-full rounded-xl border border-slate-300
+    px-3 py-2 text-sm;
+  }
+
+  .label {
+    @apply block text-sm font-medium text-slate-600 mb-1;
+  }
+}

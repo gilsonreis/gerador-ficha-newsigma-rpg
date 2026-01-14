@@ -1,0 +1,41 @@
+<section class="card mt-5">
+  <h2 class="card-title">Itens</h2>
+
+  <div class="space-y-2">
+
+    <div
+      *ngFor="let item of itens; let i = index"
+      class="flex items-center gap-2"
+    >
+
+      <!-- Campo de texto -->
+      <input
+        type="text"
+        [(ngModel)]="itens[i]"
+        class="w-full rounded-lg border px-3 py-2 text-base"
+        placeholder="Item"
+      />
+
+      <!-- Botão + -->
+      <button
+        type="button"
+        (click)="adicionarItem()"
+        class="rounded-lg border px-3 py-2 text-lg font-bold"
+      >
+        +
+      </button>
+
+      <!-- Botão - (só aparece a partir da segunda linha) -->
+      <button
+        *ngIf="i > 0"
+        type="button"
+        (click)="removerItem(i)"
+        class="rounded-lg border px-3 py-2 text-lg font-bold"
+      >
+        -
+      </button>
+
+    </div>
+
+  </div>
+</section>

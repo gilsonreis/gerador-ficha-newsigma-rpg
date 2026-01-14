@@ -1,0 +1,40 @@
+<section class="card mt-5">
+  <h2 class="card-title">Perícias</h2>
+
+  <div class="space-y-3">
+
+    <div
+      *ngFor="let pericia of pericias"
+      class="flex items-center justify-between gap-2"
+    >
+      <span class="flex-1 text-sm font-medium">
+        {{ pericia.nome }}
+      </span>
+
+      <div class="flex items-center gap-2">
+        <button
+          type="button"
+          class="btn-icon"
+          aria-label="Diminuir"
+          (click)="diminuir(pericia)"
+        >
+          −
+        </button>
+
+        <span class="w-6 text-center font-semibold">
+          {{ pericia.valor }}
+        </span>
+
+        <button
+          type="button"
+          class="btn-icon"
+          aria-label="Aumentar"
+          (click)="aumentar(pericia)"
+        >
+          +
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>

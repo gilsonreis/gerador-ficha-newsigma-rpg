@@ -1,0 +1,73 @@
+<section class="card">
+  <h2 class="card-title">
+    Dados do Personagem
+  </h2>
+
+  <div class="space-y-4">
+    <div>
+      <label class="label">Jogador</label>
+      <input class="input" />
+    </div>
+
+    <div>
+      <label class="label">Personagem</label>
+      <input class="input" />
+    </div>
+
+    <div>
+      <label class="label">Sexo</label>
+      <input class="input" />
+    </div>
+
+    <div>
+      <label class="label">Idade</label>
+      <input class="input" type="number" />
+    </div>
+
+    <div>
+      <label class="label" for="arquetipo">Arquétipo</label>
+      <select id="arquetipo" class="input">
+        <option value="" disabled selected>Selecione um arquétipo</option>
+        <option value="COMBATENTE">Combatente</option>
+        <option value="ESPECIALISTA">Especialista</option>
+        <option value="EXPLORADOR">Explorador</option>
+        <option value="ASTUTO">Astuto</option>
+        <option value="MISTICO">Místico</option>
+        <option value="ARTISTA">Artista</option>
+      </select>
+    </div>
+
+    <div>
+      <label class="label">Especialização</label>
+      <input class="input" />
+    </div>
+
+    <div>
+      <label class="label">Nível</label>
+      <input class="input" type="number" min="1" max="10" step="1" value="1" />
+    </div>
+
+    <div>
+      <label class="label">Experiência</label>
+      <input class="input" type="number" min="0" max="3000" step="50" value="0" />
+    </div>
+
+    <div>
+      <label class="label">Ambientação</label>
+      <input class="input" />
+    </div>
+
+    <div>
+      <label class="label">Campanha</label>
+      <input class="input" />
+    </div>
+
+    <div>
+      <label class="label">História do Personagem</label>
+      <textarea
+        class="input min-h-[120px]"
+        placeholder="Conte a história do seu personagem..."
+      ></textarea>
+    </div>
+  </div>
+</section>

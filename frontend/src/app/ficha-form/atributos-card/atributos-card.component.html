@@ -1,0 +1,126 @@
+<section class="card mt-5">
+  <h2 class="card-title">Atributos</h2>
+
+  <div class="space-y-4">
+
+    <div class="relative">
+      <label class="label" for="forca">Força (FOR)</label>
+
+      <input
+        id="forca"
+        type="number"
+        class="input text-center text-lg font-semibold pr-12"
+        min="8"
+        max="12"
+      />
+
+      <button
+        type="button"
+        class="absolute right-3 top-9 text-indigo-600 hover:text-indigo-800 active:scale-95"
+        aria-label="Rolar Força"
+          (click)="rolarAtributo('forca')"
+      >
+        <lucide-icon
+          [name]="icons.Dice6"
+          class="w-6 h-6">
+        </lucide-icon>
+      </button>
+    </div>
+
+    <div class="relative">
+      <label class="label" for="destreza">Destreza (DES)</label>
+
+      <input
+        id="destreza"
+        type="number"
+        class="input text-center text-lg font-semibold pr-12"
+        min="8"
+        max="12"
+      />
+
+      <button
+        type="button"
+        class="absolute right-3 top-9 text-indigo-600 hover:text-indigo-800 active:scale-95"
+        aria-label="Rolar Destreza"
+        (click)="rolarAtributo('destreza')"
+      >
+        <lucide-icon
+          [name]="icons.Dice6"
+          class="w-6 h-6">
+        </lucide-icon>      </button>
+    </div>
+
+    <div class="relative">
+      <label class="label" for="inteligencia">Inteligência (INT)</label>
+
+      <input
+        id="inteligencia"
+        type="number"
+        class="input text-center text-lg font-semibold pr-12"
+        min="8"
+        max="12"
+      />
+
+      <button
+        type="button"
+        class="absolute right-3 top-9 text-indigo-600 hover:text-indigo-800 active:scale-95"
+        aria-label="Rolar Inteligência"
+        (click)="rolarAtributo('inteligencia')"
+      >
+        <lucide-icon
+          [name]="icons.Dice6"
+          class="w-6 h-6">
+        </lucide-icon>
+      </button>
+    </div>
+
+    <div class="relative">
+      <label class="label" for="constituicao">Constituição (CON)</label>
+
+      <input
+        id="constituicao"
+        type="number"
+        class="input text-center text-lg font-semibold pr-12"
+        min="8"
+        max="12"
+      />
+
+      <button
+        type="button"
+        class="absolute right-3 top-9 text-indigo-600 hover:text-indigo-800 active:scale-95"
+        aria-label="Rolar Constituição"
+        (click)="rolarAtributo('constituicao')"
+      >
+        <lucide-icon
+          [name]="icons.Dice6"
+          class="w-6 h-6">
+        </lucide-icon>
+      </button>
+    </div>
+
+    <div class="relative">
+      <label class="label" for="carisma">Carisma (CAR)</label>
+
+      <input
+        id="carisma"
+        type="number"
+        class="input text-center text-lg font-semibold pr-12"
+        min="8"
+        max="12"
+      />
+
+      <button
+        type="button"
+        class="absolute right-3 top-9 text-indigo-600 hover:text-indigo-800 active:scale-95"
+        aria-label="Rolar Carisma"
+        (click)="rolarAtributo('carisma')"
+      >
+        <lucide-icon
+          [name]="icons.Dice6"
+          class="w-6 h-6">
+        </lucide-icon>
+      </button>
+    </div>
+
+  </div>
+</section>

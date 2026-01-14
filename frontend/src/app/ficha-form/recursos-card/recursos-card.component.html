@@ -1,0 +1,64 @@
+<section class="card mt-5">
+  <h2 class="card-title">Pontos</h2>
+
+  <div class="space-y-4">
+
+    <div class="relative">
+      <label class="label" for="pv">Pontos de Vida (PV)</label>
+
+      <input
+        id="pv"
+        type="number"
+        class="input text-center text-lg font-semibold pr-12"
+      />
+
+      <button
+        type="button"
+        class="absolute right-3 top-9 text-indigo-600 hover:text-indigo-800 active:scale-95"
+        aria-label="Rolar Pontos de Vida"
+        (click)="rolarPV()"
+      >
+        <lucide-icon [name]="icons.Dice6" class="w-6 h-6"></lucide-icon>
+      </button>
+    </div>
+
+    <div class="relative">
+      <label class="label" for="estamina">Estamina (EST)</label>
+
+      <input
+        id="estamina"
+        type="number"
+        class="input text-center text-lg font-semibold pr-12"
+      />
+
+      <button
+        type="button"
+        class="absolute right-3 top-9 text-indigo-600 hover:text-indigo-800 active:scale-95"
+        aria-label="Rolar Estamina"
+        (click)="rolarEstamina()"
+      >
+        <lucide-icon [name]="icons.Dice6" class="w-6 h-6"></lucide-icon>
+      </button>
+    </div>
+
+    <div class="relative">
+      <label class="label" for="dinheiro">Dinheiro</label>
+
+      <input
+        id="dinheiro"
+        type="number"
+        class="input text-center text-lg font-semibold pr-12"
+      />
+
+      <button
+        type="button"
+        class="absolute right-3 top-9 text-indigo-600 hover:text-indigo-800 active:scale-95"
+        aria-label="Rolar Dinheiro"
+        (click)="rolarDinheiro()"
+      >
+        <lucide-icon [name]="icons.Dice6" class="w-6 h-6"></lucide-icon>
+      </button>
+    </div>
+
+  </div>
+</section>
