@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-dados-personagem-card',
-  imports: [],
+  standalone: true,
+  imports: [ReactiveFormsModule],
   templateUrl: './dados-personagem-card.component.html',
-  styleUrl: './dados-personagem-card.component.scss'
+  styleUrl: './dados-personagem-card.component.scss',
 })
 export class DadosPersonagemCardComponent {
-
+  @Input() form!: FormGroup;
 }

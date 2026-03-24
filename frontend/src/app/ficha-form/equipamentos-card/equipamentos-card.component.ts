@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -15,26 +15,36 @@ export interface Equipment {
   imports: [CommonModule, FormsModule],
   templateUrl: './equipamentos-card.component.html',
 })
-export class EquipamentosCardComponent {
+export class EquipamentosCardComponent implements OnInit {
+  @Output() equipamentosChange = new EventEmitter<Equipment[]>();
 
-  equipamentos: Equipment[] = [
-    this.novoEquipamento(),
-  ];
+  equipamentos: Equipment[] = [this.novoEquipamento()];
+
+  ngOnInit() {
+    this.emitir();
+  }
 
   adicionar() {
-    this.equipamentos.push(this.novoEquipamento());
+    if (this.equipamentos.length < 13) {
+      this.equipamentos.push(this.novoEquipamento());
+      this.emitir();
+    }
   }
 
   remover(index: number) {
     this.equipamentos.splice(index, 1);
+    this.emitir();
+  }
+
+  onChange() {
+    this.emitir();
   }
 
   private novoEquipamento(): Equipment {
-    return {
-      nome: '',
-      tipo: '',
-      danoDefesa: '',
-      observacao: '',
-    };
+    return { nome: '', tipo: '', danoDefesa: '', observacao: '' };
+  }
+
+  private emitir() {
+    this.equipamentosChange.emit(this.equipamentos.map(e => ({ ...e })));
   }
 }

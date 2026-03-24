@@ -1,61 +1,57 @@
-<section class="card mt-5">
+<section class="card mt-5" [formGroup]="form">
   <h2 class="card-title">Pontos</h2>
 
   <div class="space-y-4">
 
     <div class="relative">
-      <label class="label" for="pv">Pontos de Vida (PV)</label>
-
-      <input
-        id="pv"
-        type="number"
-        class="input text-center text-lg font-semibold pr-12"
-      />
-
-      <button
-        type="button"
-        class="absolute right-3 top-9 text-indigo-600 hover:text-indigo-800 active:scale-95"
-        aria-label="Rolar Pontos de Vida"
-        (click)="rolarPV()"
-      >
+      <div class="flex items-center justify-between mb-1">
+        <label class="label mb-0" for="pv">Pontos de Vida (PV)</label>
+        <span class="text-[10px] font-bold tracking-wider uppercase" [ngClass]="arquetipo ? 'text-indigo-500' : 'text-slate-400'">{{ formulaPV }}</span>
+      </div>
+      <input id="pv" type="number" class="input text-center text-lg font-semibold pr-12 focus:outline-none"
+        readonly formControlName="pontosDeVida" placeholder="--" />
+      <button *ngIf="!form.get('pontosDeVida')?.value" type="button" class="absolute right-3 top-8 text-indigo-600 hover:text-indigo-800 active:scale-95 transition"
+        [disabled]="!arquetipo"
+        [ngClass]="{'opacity-50 cursor-not-allowed': !arquetipo}"
+        aria-label="Rolar PV" (click)="rolarPV()">
         <lucide-icon [name]="icons.Dice6" class="w-6 h-6"></lucide-icon>
       </button>
     </div>
 
     <div class="relative">
-      <label class="label" for="estamina">Estamina (EST)</label>
-
-      <input
-        id="estamina"
-        type="number"
-        class="input text-center text-lg font-semibold pr-12"
-      />
-
-      <button
-        type="button"
-        class="absolute right-3 top-9 text-indigo-600 hover:text-indigo-800 active:scale-95"
-        aria-label="Rolar Estamina"
-        (click)="rolarEstamina()"
-      >
+      <div class="flex items-center justify-between mb-1">
+        <label class="label mb-0" for="estamina">Estamina (EST)</label>
+        <span class="text-[10px] font-bold tracking-wider uppercase" [ngClass]="arquetipo ? 'text-indigo-500' : 'text-slate-400'">{{ formulaEstamina }}</span>
+      </div>
+      <input id="estamina" type="number" class="input text-center text-lg font-semibold pr-12 focus:outline-none"
+        readonly formControlName="pontosDeInstamina" placeholder="--" />
+      <button *ngIf="!form.get('pontosDeInstamina')?.value" type="button" class="absolute right-3 top-8 text-indigo-600 hover:text-indigo-800 active:scale-95 transition"
+        [disabled]="!arquetipo"
+        [ngClass]="{'opacity-50 cursor-not-allowed': !arquetipo}"
+        aria-label="Rolar Estamina" (click)="rolarEstamina()">
         <lucide-icon [name]="icons.Dice6" class="w-6 h-6"></lucide-icon>
       </button>
     </div>
 
     <div class="relative">
-      <label class="label" for="dinheiro">Dinheiro</label>
+      <div class="flex items-center justify-between mb-1">
+        <label class="label mb-0" for="dinheiro">Dinheiro</label>
+        <span class="text-[10px] font-bold tracking-wider uppercase text-slate-400">1D8 x 10</span>
+      </div>
+      <input id="dinheiro" type="number" class="input text-center text-lg font-semibold pr-12 focus:outline-none"
+        readonly formControlName="dinheiro" placeholder="--" />
+      <button *ngIf="!form.get('dinheiro')?.value" type="button" class="absolute right-3 top-8 text-indigo-600 hover:text-indigo-800 active:scale-95 transition"
+        aria-label="Rolar Dinheiro" (click)="rolarDinheiro()">
+        <lucide-icon [name]="icons.Dice6" class="w-6 h-6"></lucide-icon>
+      </button>
+    </div>
 
-      <input
-        id="dinheiro"
-        type="number"
-        class="input text-center text-lg font-semibold pr-12"
-      />
-
-      <button
-        type="button"
-        class="absolute right-3 top-9 text-indigo-600 hover:text-indigo-800 active:scale-95"
-        aria-label="Rolar Dinheiro"
-        (click)="rolarDinheiro()"
-      >
+    <div class="relative">
+      <label class="label" for="sorte">Sorte</label>
+      <input id="sorte" type="number" class="input text-center text-lg font-semibold pr-12 focus:outline-none"
+        readonly formControlName="sorte" placeholder="--" />
+      <button *ngIf="!form.get('sorte')?.value" type="button" class="absolute right-3 top-9 text-indigo-600 hover:text-indigo-800 active:scale-95 transition"
+        aria-label="Rolar Sorte" (click)="rolarSorte()">
         <lucide-icon [name]="icons.Dice6" class="w-6 h-6"></lucide-icon>
       </button>
     </div>

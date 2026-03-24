@@ -1,73 +1,77 @@
-<section class="card">
-  <h2 class="card-title">
-    Dados do Personagem
-  </h2>
+<section class="card" [formGroup]="form">
+  <h2 class="card-title mb-4">Dados do Personagem</h2>
 
-  <div class="space-y-4">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    
     <div>
       <label class="label">Jogador</label>
-      <input class="input" />
+      <input class="input" formControlName="nomeJogador" />
     </div>
 
     <div>
       <label class="label">Personagem</label>
-      <input class="input" />
-    </div>
-
-    <div>
-      <label class="label">Sexo</label>
-      <input class="input" />
-    </div>
-
-    <div>
-      <label class="label">Idade</label>
-      <input class="input" type="number" />
+      <input class="input" formControlName="nomePersonagem" />
     </div>
 
     <div>
       <label class="label" for="arquetipo">Arquétipo</label>
-      <select id="arquetipo" class="input">
-        <option value="" disabled selected>Selecione um arquétipo</option>
-        <option value="COMBATENTE">Combatente</option>
-        <option value="ESPECIALISTA">Especialista</option>
-        <option value="EXPLORADOR">Explorador</option>
-        <option value="ASTUTO">Astuto</option>
-        <option value="MISTICO">Místico</option>
-        <option value="ARTISTA">Artista</option>
+      <select id="arquetipo" class="input" formControlName="arquetipoPersonagem">
+        <option value="" disabled>Selecione um arquétipo</option>
+        <option value="Combatente">Combatente</option>
+        <option value="Especialista">Especialista</option>
+        <option value="Explorador">Explorador</option>
+        <option value="Astuto">Astuto</option>
+        <option value="Místico">Místico</option>
+        <option value="Artista">Artista</option>
       </select>
     </div>
 
     <div>
       <label class="label">Especialização</label>
-      <input class="input" />
-    </div>
-
-    <div>
-      <label class="label">Nível</label>
-      <input class="input" type="number" min="1" max="10" step="1" value="1" />
-    </div>
-
-    <div>
-      <label class="label">Experiência</label>
-      <input class="input" type="number" min="0" max="3000" step="50" value="0" />
+      <input class="input" formControlName="especializacaoPersonagem" />
     </div>
 
     <div>
       <label class="label">Ambientação</label>
-      <input class="input" />
+      <input class="input" formControlName="ambientacao" />
     </div>
 
     <div>
       <label class="label">Campanha</label>
-      <input class="input" />
+      <input class="input" formControlName="campanha" />
     </div>
 
-    <div>
-      <label class="label">História do Personagem</label>
-      <textarea
-        class="input min-h-[120px]"
-        placeholder="Conte a história do seu personagem..."
-      ></textarea>
+    <div class="grid grid-cols-2 gap-3">
+      <div>
+        <label class="label">Nível</label>
+        <input class="input" type="number" min="1" max="10" formControlName="nivelPersonagem" />
+      </div>
+      <div>
+        <label class="label">Experiência</label>
+        <input class="input" type="number" min="0" max="3000" step="50" formControlName="expPersonagem" />
+      </div>
     </div>
+
+    <div class="grid grid-cols-2 gap-3">
+      <div>
+        <label class="label">Sexo</label>
+        <input class="input text-center" formControlName="sexoPersonagem" />
+      </div>
+      <div>
+        <label class="label">Idade</label>
+        <input class="input text-center" type="number" formControlName="idadePersonagem" />
+      </div>
+    </div>
+
+    <div class="sm:col-span-2 lg:col-span-2">
+      <label class="label">Aparência Física</label>
+      <textarea class="input min-h-[80px] resize-y" formControlName="aparenciaFisica" placeholder="Descreva a aparência do personagem..."></textarea>
+    </div>
+
+    <div class="sm:col-span-2 lg:col-span-2">
+      <label class="label">História do Personagem</label>
+      <textarea class="input min-h-[80px] resize-y" formControlName="historiaPersonagem" placeholder="Conte a história do seu personagem..."></textarea>
+    </div>
+
   </div>
 </section>

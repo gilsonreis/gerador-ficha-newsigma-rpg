@@ -51,6 +51,7 @@ public class NewSigmaFichaReportService {
         params.put("pontosDeVida", request.getPontosDeVida());
         params.put("pontosDeInstamina", request.getPontosDeInstamina());
         params.put("dinheiro", request.getDinheiro());
+        params.put("sorte", request.getSorte());
 
         params.put("aparenciaFisica", request.getAparenciaFisica());
 

@@ -1,124 +1,56 @@
-<section class="card mt-5">
+<section class="card mt-5" [formGroup]="form">
   <h2 class="card-title">Atributos</h2>
+  <p class="text-xs text-slate-400 mb-3">Valores entre 8 e 12. Use o dado para rolar aleatoriamente.</p>
 
   <div class="space-y-4">
 
     <div class="relative">
       <label class="label" for="forca">Força (FOR)</label>
-
-      <input
-        id="forca"
-        type="number"
-        class="input text-center text-lg font-semibold pr-12"
-        min="8"
-        max="12"
-      />
-
-      <button
-        type="button"
-        class="absolute right-3 top-9 text-indigo-600 hover:text-indigo-800 active:scale-95"
-        aria-label="Rolar Força"
-          (click)="rolarAtributo('forca')"
-      >
-        <lucide-icon
-          [name]="icons.Dice6"
-          class="w-6 h-6">
-        </lucide-icon>
+      <input id="forca" type="number" class="input text-center text-lg font-semibold pr-12 focus:outline-none"
+        readonly formControlName="atributoForca" placeholder="--" />
+      <button *ngIf="!form.get('atributoForca')?.value" type="button" class="absolute right-3 top-9 text-indigo-600 hover:text-indigo-800 transition active:scale-95"
+        aria-label="Rolar" (click)="rolarAtributo('atributoForca')">
+        <lucide-icon [name]="icons.Dice6" class="w-6 h-6"></lucide-icon>
       </button>
     </div>
 
     <div class="relative">
       <label class="label" for="destreza">Destreza (DES)</label>
-
-      <input
-        id="destreza"
-        type="number"
-        class="input text-center text-lg font-semibold pr-12"
-        min="8"
-        max="12"
-      />
-
-      <button
-        type="button"
-        class="absolute right-3 top-9 text-indigo-600 hover:text-indigo-800 active:scale-95"
-        aria-label="Rolar Destreza"
-        (click)="rolarAtributo('destreza')"
-      >
-        <lucide-icon
-          [name]="icons.Dice6"
-          class="w-6 h-6">
-        </lucide-icon>      </button>
+      <input id="destreza" type="number" class="input text-center text-lg font-semibold pr-12 focus:outline-none"
+        readonly formControlName="atributoDestreza" placeholder="--" />
+      <button *ngIf="!form.get('atributoDestreza')?.value" type="button" class="absolute right-3 top-9 text-indigo-600 hover:text-indigo-800 transition active:scale-95"
+        aria-label="Rolar" (click)="rolarAtributo('atributoDestreza')">
+        <lucide-icon [name]="icons.Dice6" class="w-6 h-6"></lucide-icon>
+      </button>
     </div>
 
     <div class="relative">
       <label class="label" for="inteligencia">Inteligência (INT)</label>
-
-      <input
-        id="inteligencia"
-        type="number"
-        class="input text-center text-lg font-semibold pr-12"
-        min="8"
-        max="12"
-      />
-
-      <button
-        type="button"
-        class="absolute right-3 top-9 text-indigo-600 hover:text-indigo-800 active:scale-95"
-        aria-label="Rolar Inteligência"
-        (click)="rolarAtributo('inteligencia')"
-      >
-        <lucide-icon
-          [name]="icons.Dice6"
-          class="w-6 h-6">
-        </lucide-icon>
+      <input id="inteligencia" type="number" class="input text-center text-lg font-semibold pr-12 focus:outline-none"
+        readonly formControlName="atributoInteligencia" placeholder="--" />
+      <button *ngIf="!form.get('atributoInteligencia')?.value" type="button" class="absolute right-3 top-9 text-indigo-600 hover:text-indigo-800 transition active:scale-95"
+        aria-label="Rolar" (click)="rolarAtributo('atributoInteligencia')">
+        <lucide-icon [name]="icons.Dice6" class="w-6 h-6"></lucide-icon>
       </button>
     </div>
 
     <div class="relative">
       <label class="label" for="constituicao">Constituição (CON)</label>
-
-      <input
-        id="constituicao"
-        type="number"
-        class="input text-center text-lg font-semibold pr-12"
-        min="8"
-        max="12"
-      />
-
-      <button
-        type="button"
-        class="absolute right-3 top-9 text-indigo-600 hover:text-indigo-800 active:scale-95"
-        aria-label="Rolar Constituição"
-        (click)="rolarAtributo('constituicao')"
-      >
-        <lucide-icon
-          [name]="icons.Dice6"
-          class="w-6 h-6">
-        </lucide-icon>
+      <input id="constituicao" type="number" class="input text-center text-lg font-semibold pr-12 focus:outline-none"
+        readonly formControlName="atributoConstituicao" placeholder="--" />
+      <button *ngIf="!form.get('atributoConstituicao')?.value" type="button" class="absolute right-3 top-9 text-indigo-600 hover:text-indigo-800 transition active:scale-95"
+        aria-label="Rolar" (click)="rolarAtributo('atributoConstituicao')">
+        <lucide-icon [name]="icons.Dice6" class="w-6 h-6"></lucide-icon>
       </button>
     </div>
 
     <div class="relative">
       <label class="label" for="carisma">Carisma (CAR)</label>
-
-      <input
-        id="carisma"
-        type="number"
-        class="input text-center text-lg font-semibold pr-12"
-        min="8"
-        max="12"
-      />
-
-      <button
-        type="button"
-        class="absolute right-3 top-9 text-indigo-600 hover:text-indigo-800 active:scale-95"
-        aria-label="Rolar Carisma"
-        (click)="rolarAtributo('carisma')"
-      >
-        <lucide-icon
-          [name]="icons.Dice6"
-          class="w-6 h-6">
-        </lucide-icon>
+      <input id="carisma" type="number" class="input text-center text-lg font-semibold pr-12 focus:outline-none"
+         readonly formControlName="atributoCarisma" placeholder="--" />
+      <button *ngIf="!form.get('atributoCarisma')?.value" type="button" class="absolute right-3 top-9 text-indigo-600 hover:text-indigo-800 transition active:scale-95"
+        aria-label="Rolar" (click)="rolarAtributo('atributoCarisma')">
+        <lucide-icon [name]="icons.Dice6" class="w-6 h-6"></lucide-icon>
       </button>
     </div>
 

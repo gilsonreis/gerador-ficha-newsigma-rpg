@@ -30,6 +30,7 @@ public class NewSigmaFichaRequest {
     private String pontosDeInstamina;
     private String dinheiro;
     private String aparenciaFisica;
+    private String sorte;
 
     private String historiaPersonagem;
 

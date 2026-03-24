@@ -1,40 +1,58 @@
 <section class="card mt-5">
-  <h2 class="card-title">Perícias</h2>
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+    <h2 class="card-title mb-0">Perícias</h2>
+    <div class="px-3 py-1 rounded-full text-sm font-bold text-center"
+         [ngClass]="pontosRestantes > 0 ? 'bg-indigo-100 text-indigo-700' : (pontosRestantes === 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700')">
+      Pontos: {{ pontosRestantes }} / {{ pontosDisponiveis }}
+    </div>
+  </div>
+  
+  <p class="text-xs text-slate-500 mb-4 leading-relaxed bg-slate-50 p-3 rounded-lg border border-slate-100">
+    <strong class="text-indigo-600 block mb-1">Como funciona:</strong>
+    Você tem <strong>3 pontos</strong> base. Nível (+) custa 1. Você pode pegar até <strong>2 pontos negativos (-)</strong> para extra.<br>
+    <span class="text-indigo-500">Arquétipos</span> já vêm marcados.
+  </p>
 
-  <div class="space-y-3">
-
+  <div class="space-y-2">
     <div
       *ngFor="let pericia of pericias"
-      class="flex items-center justify-between gap-2"
+      class="flex items-center justify-between gap-2 rounded-lg px-3 py-2 bg-slate-50 hover:bg-slate-100 transition"
+      [ngClass]="{'border border-indigo-100 bg-indigo-50/30': isLocked(pericia.key)}"
     >
-      <span class="flex-1 text-sm font-medium">
+      <span class="flex-1 text-sm font-medium min-w-0 pr-2" [ngClass]="isLocked(pericia.key) ? 'text-indigo-800' : 'text-slate-700'">
         {{ pericia.nome }}
+        <span *ngIf="isLocked(pericia.key)" class="text-[10px] uppercase text-indigo-400 ml-1 font-bold tracking-wider">(Arq)</span>
       </span>
 
       <div class="flex items-center gap-2">
+
+        <!-- V1: Nível 1 -->
         <button
           type="button"
-          class="btn-icon"
-          aria-label="Diminuir"
-          (click)="diminuir(pericia)"
+          (click)="clicarV1(pericia.key)"
+          class="w-9 h-9 rounded-full text-sm font-bold transition active:scale-95 flex items-center justify-center"
+          [ngClass]="corClasseV1(pericia.key)"
+          [title]="'Nível 1: ' + (getV1(pericia.key) || 'neutro')"
         >
-          −
+          <span *ngIf="isLocked(pericia.key) && getV1(pericia.key) === '+'">⚓</span>
+          <span *ngIf="!isLocked(pericia.key) || getV1(pericia.key) !== '+'">{{ getV1(pericia.key) || '·' }}</span>
         </button>
 
-        <span class="w-6 text-center font-semibold">
-          {{ pericia.valor }}
-        </span>
-
+        <!-- V2: Nível 2 -->
         <button
           type="button"
-          class="btn-icon"
-          aria-label="Aumentar"
-          (click)="aumentar(pericia)"
+          (click)="clicarV2(pericia.key)"
+          class="w-9 h-9 rounded-full text-sm font-bold transition flex items-center justify-center"
+          [ngClass]="corClasseV2(pericia.key)"
+          [class.active:scale-95]="getV1(pericia.key) === '+'"
+          [disabled]="getV1(pericia.key) !== '+'"
+          title="Nível 2"
         >
-          +
+          {{ getV2(pericia.key) || '·' }}
         </button>
+
       </div>
     </div>
-
   </div>
 </section>
+

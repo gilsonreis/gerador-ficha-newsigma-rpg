@@ -23,13 +23,13 @@ public enum PericiaEnum {
     PERCEPCAO("Percepção (INT, DES)"),
     PERSUASAO("Persuasão (CAR, INT)"),
     PILOTAGEM("Pilotagem (DES)"),
-    RESISTENCIA("Resistência (CON, FOR)"),
+    RESILIENCIA("Resiliência (CON)"),
+    RESISTENCIA("Resistência (FOR)"),
     SOBREVIVENCIA("Sobrevivência (INT)"),
     PERICIA_ADICIONAL_1(""),
     PERICIA_ADICIONAL_2(""),
     PERICIA_ADICIONAL_3(""),
-    PERICIA_ADICIONAL_4(""),
-    PERICIA_ADICIONAL_5("");
+    PERICIA_ADICIONAL_4("");
 
     private final String nome;
 
