@@ -48,7 +48,7 @@ export interface NewSigmaFichaRequest {
 
 @Injectable({ providedIn: 'root' })
 export class FichaService {
-  private readonly API = 'http://localhost:8080/api/fichas/newsigma/pdf';
+  private readonly API = 'https://complex-ninnetta-simplify-20238c97.koyeb.app/api/fichas/newsigma/pdf';
 
   constructor(private http: HttpClient) {}
 

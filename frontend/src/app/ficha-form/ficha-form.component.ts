@@ -213,8 +213,18 @@ export class FichaFormComponent implements OnInit {
     return this.pontosSobrando === 0;
   }
 
+  tentouGerar = false;
+
   gerarPdf() {
-    if (this.gerando || !this.periciasValidas) return;
+    this.tentouGerar = true;
+    this.form.markAllAsTouched();
+
+    if (this.gerando || this.form.invalid || !this.periciasValidas) {
+      if (this.form.get('nomePersonagem')?.invalid) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      return;
+    }
     this.gerando = true;
 
     const v = this.form.value;

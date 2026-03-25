@@ -68,10 +68,19 @@
         ⚠️ Você tem {{ pontosSobrando }} ponto(s) de perícia pendente(s) para distribuir! A ficha só será gerada quando todos forem gastos.
       </div>
 
+      <!-- ERROS DE FORMULÁRIO -->
+      <div *ngIf="tentouGerar && (form.get('nomePersonagem')?.invalid || (form.get('arquetipoPersonagem')?.value && !periciasValidas))" class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl shadow-sm text-sm font-medium mb-4">
+        <p class="font-bold flex items-center gap-2 mb-1">⚠️ Não foi possível gerar a ficha:</p>
+        <ul class="list-disc list-inside">
+          <li *ngIf="form.get('nomePersonagem')?.invalid">O <b>Nome do Personagem</b> é obrigatório.</li>
+          <li *ngIf="form.get('arquetipoPersonagem')?.value && !periciasValidas">Há <b>{{ pontosSobrando }} ponto(s) de perícia</b> para distribuir.</li>
+        </ul>
+      </div>
+
       <!-- BOTÃO GERAR PDF -->
       <button
         type="submit"
-        [disabled]="gerando || form.invalid || !periciasValidas"
+        [disabled]="gerando"
         class="w-full bg-indigo-600 text-white py-4 rounded-xl font-bold shadow-lg hover:bg-indigo-700 hover:shadow-xl active:scale-95 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {{ gerando ? 'Gerando PDF Mágico...' : '🎲 Gerar Ficha em PDF' }}
