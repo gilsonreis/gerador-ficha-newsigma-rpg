@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/fichas/newsigma")
 @CrossOrigin(origins = "*")
@@ -34,6 +36,7 @@ public class FichaController {
                     .body(pdf);
 
         } catch (Exception e) {
+            log.error("Erro interno ao gerar PDF na Controller", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
