@@ -14,6 +14,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class NewSigmaFichaReportService {
 
@@ -25,8 +28,11 @@ public class NewSigmaFichaReportService {
 
     public byte[] gerarPdf(NewSigmaFichaRequest request) throws Exception {
 
-        InputStream jasperStream =
-                new ClassPathResource("reports/FichaPersonagem.jasper").getInputStream();
+        ClassPathResource resource = new ClassPathResource("reports/FichaPersonagem.jasper");
+        log.info("Resource exists? {}", resource.exists());
+        log.info("Resource filename: {}", resource.getFilename());
+
+        InputStream jasperStream = resource.getInputStream();
 
         Map<String, Object> params = new HashMap<>();
 
