@@ -34,6 +34,10 @@ export class ItensCardComponent implements OnInit {
     this.emitir();
   }
 
+  trackByIndex(index: number, obj: any): any {
+    return index;
+  }
+
   private emitir() {
     this.itensChange.emit([...this.itens]);
   }

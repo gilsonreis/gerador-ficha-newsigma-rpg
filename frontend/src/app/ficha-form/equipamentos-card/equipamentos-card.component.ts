@@ -40,6 +40,10 @@ export class EquipamentosCardComponent implements OnInit {
     this.emitir();
   }
 
+  trackByIndex(index: number, obj: any): any {
+    return index;
+  }
+
   private novoEquipamento(): Equipment {
     return { nome: '', tipo: '', danoDefesa: '', observacao: '' };
   }

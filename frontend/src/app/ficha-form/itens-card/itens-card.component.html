@@ -5,7 +5,7 @@
   <div class="space-y-2">
 
     <div
-      *ngFor="let item of itens; let i = index"
+      *ngFor="let item of itens; let i = index; trackBy: trackByIndex"
       class="flex items-center gap-2"
     >
       <input
