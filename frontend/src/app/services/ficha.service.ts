@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, retry } from 'rxjs';
 
 export interface PericiaInput {
   v1: '' | '+' | '-';
@@ -53,6 +53,8 @@ export class FichaService {
   constructor(private http: HttpClient) {}
 
   gerarPdf(payload: NewSigmaFichaRequest): Observable<Blob> {
-    return this.http.post(this.API, payload, { responseType: 'blob' });
+    return this.http.post(this.API, payload, { responseType: 'blob' }).pipe(
+      retry(1)
+    );
   }
 }
