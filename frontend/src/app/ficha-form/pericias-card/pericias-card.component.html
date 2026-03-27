@@ -44,8 +44,8 @@
           (click)="clicarV2(pericia.key)"
           class="w-9 h-9 rounded-full text-sm font-bold transition flex items-center justify-center"
           [ngClass]="corClasseV2(pericia.key)"
-          [class.active:scale-95]="getV1(pericia.key) === '+'"
-          [disabled]="getV1(pericia.key) !== '+'"
+          [class.active:scale-95]="getV1(pericia.key) !== ''"
+          [disabled]="getV1(pericia.key) === ''"
           title="Nível 2"
         >
           {{ getV2(pericia.key) || '·' }}

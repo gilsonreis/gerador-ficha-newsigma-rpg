@@ -201,6 +201,7 @@ export class FichaFormComponent implements OnInit {
     for (const key of Object.keys(periciasRaw)) {
       const v = periciasRaw[key];
       if (v.v1 === '-') negativos++;
+      if (v.v2 === '-') negativos++;
       if (v.v1 === '+' && !locked.includes(key)) comprados++;
       if (v.v2 === '+') comprados++;
     }

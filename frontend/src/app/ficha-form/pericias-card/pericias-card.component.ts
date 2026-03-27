@@ -27,6 +27,7 @@ export class PericiasCardComponent {
     const val = this.periciasGroup.getRawValue();
     for (const key in val) {
       if (val[key].v1 === '-') count++;
+      if (val[key].v2 === '-') count++;
     }
     return count;
   }
@@ -86,11 +87,15 @@ export class PericiasCardComponent {
     if (!ctrl) return;
     const atual = ctrl.value as { v1: PericiaValor; v2: PericiaValor };
     
-    if (atual.v1 !== '+') return; // Nível 2 exige Nível 1 positivo
+    if (atual.v1 === '') return; // Nível 2 exige Nível 1 preenchido
 
     let novoV2 = atual.v2;
     if (atual.v2 === '') {
-      if (this.pontosRestantes > 0) novoV2 = '+';
+      if (atual.v1 === '+') {
+        if (this.pontosRestantes > 0) novoV2 = '+';
+      } else if (atual.v1 === '-') {
+        if (this.totalNegativos < 2) novoV2 = '-';
+      }
     } else {
       novoV2 = '';
     }
@@ -116,8 +121,9 @@ export class PericiasCardComponent {
   corClasseV2(key: string): string {
     const v1 = this.getV1(key);
     const v2 = this.getV2(key);
-    if (v1 !== '+') return 'bg-slate-100 text-slate-300 cursor-not-allowed opacity-50';
+    if (v1 === '') return 'bg-slate-100 text-slate-300 cursor-not-allowed opacity-50';
     if (v2 === '+') return 'bg-green-500 text-white cursor-pointer hover:bg-green-600 shadow-sm';
+    if (v2 === '-') return 'bg-red-500 text-white cursor-pointer hover:bg-red-600 shadow-sm';
     return 'bg-slate-200 text-slate-500 cursor-pointer hover:bg-slate-300';
   }
 }
