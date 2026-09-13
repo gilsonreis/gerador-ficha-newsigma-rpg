@@ -8,7 +8,7 @@ import { PericiasCardComponent } from './pericias-card/pericias-card.component';
 import { ItensCardComponent } from './itens-card/itens-card.component';
 import { EquipamentosCardComponent } from './equipamentos-card/equipamentos-card.component';
 import { FichaService, NewSigmaFichaRequest, PericiaInput } from '../services/ficha.service';
-import { PERICIAS_LIST, ARQUETIPO_PERICIAS } from './pericias-card/pericias.data';
+import { PERICIAS_LIST, ARQUETIPO_PERICIAS, calcularResumoPontos } from './pericias-card/pericias.data';
 
 @Component({
   selector: 'app-ficha-form',
@@ -79,17 +79,19 @@ export class FichaFormComponent implements OnInit {
     this.form.get('arquetipoPersonagem')?.valueChanges.subscribe(arquetipo => {
       // Se estamos carregando os dados salvos do localStorage, a gente ignora esse trigger
       // para não resetar as perícias que o usuário já tinha salvo!
-      if (this.isCarregando || !arquetipo) return;
+      if (this.isCarregando) return;
       
-      const sugeridas = ARQUETIPO_PERICIAS[arquetipo] || [];
+      const configArquetipo = arquetipo ? (ARQUETIPO_PERICIAS[arquetipo] || {}) : {};
       const periciasForm = this.form.get('pericias') as FormGroup;
       
+      // Limpa todas as perícias
       Object.keys(periciasForm.controls).forEach((key: string) => {
         periciasForm.get(key)?.setValue({ v1: '', v2: '' });
       });
 
-      sugeridas.forEach((key: string) => {
-        periciasForm.get(key)?.setValue({ v1: '+', v2: '' });
+      // Aplica o pacote vocacional (+2, +1, -1)
+      Object.entries(configArquetipo).forEach(([key, niveis]) => {
+        periciasForm.get(key)?.setValue({ v1: niveis.v1, v2: niveis.v2 });
       });
     });
 
@@ -188,26 +190,10 @@ export class FichaFormComponent implements OnInit {
   }
 
   get pontosSobrando(): number {
-    const arquetipo = this.form.get('arquetipoPersonagem')?.value;
-    if (!arquetipo) return 0;
-    const locked = ARQUETIPO_PERICIAS[arquetipo] || [];
-    
+    const arquetipo = this.form.get('arquetipoPersonagem')?.value || '';
     const nivel = Number(this.form.get('nivelPersonagem')?.value ?? 1);
-
     const periciasRaw = this.form.get('pericias')?.value || {};
-    let negativos = 0;
-    let comprados = 0;
-
-    for (const key of Object.keys(periciasRaw)) {
-      const v = periciasRaw[key];
-      if (v.v1 === '-') negativos++;
-      if (v.v2 === '-') negativos++;
-      if (v.v1 === '+' && !locked.includes(key)) comprados++;
-      if (v.v2 === '+') comprados++;
-    }
-
-    const disponiveis = 3 + (nivel - 1) + negativos;
-    return disponiveis - comprados;
+    return calcularResumoPontos(periciasRaw, arquetipo, nivel).pontosRestantes;
   }
 
   get periciasValidas(): boolean {

@@ -31,11 +31,93 @@ export const PERICIAS_LIST: PericiaData[] = [
   { key: 'SOBREVIVENCIA',     nome: 'Sobrevivência (INT)' },
 ];
 
-export const ARQUETIPO_PERICIAS: Record<string, string[]> = {
-  'Combatente': ['ARTES_MARCIAIS', 'ATLETISMO', 'INTIMIDACAO', 'MIRA', 'SOBREVIVENCIA'],
-  'Especialista': ['CONHECIMENTO_GERAL', 'CRIACAO', 'DECIFRAR', 'MEDICINA', 'SOBREVIVENCIA'],
-  'Explorador': ['ATLETISMO', 'ESCALADA', 'OCULTISMO', 'PILOTAGEM', 'SOBREVIVENCIA'],
-  'Astuto': ['CAMUFLAGEM', 'LABIA', 'PERSUASAO', 'DISFARCE', 'INTUICAO'],
-  'Místico': ['CRIACAO', 'DECIFRAR', 'INTUICAO', 'OCULTISMO', 'PERCEPCAO', 'RESISTENCIA', 'SOBREVIVENCIA'],
-  'Artista': ['CRIACAO', 'LABIA', 'PERSUASAO', 'DISFARCE', 'PERCEPCAO']
+export type PericiaValor = '' | '+' | '-';
+
+export interface PericiaNivel {
+  v1: PericiaValor;
+  v2: PericiaValor;
+}
+
+export const ARQUETIPO_PERICIAS: Record<string, Record<string, PericiaNivel>> = {
+  'Combatente': {
+    'ARTES_MARCIAIS': { v1: '+', v2: '+' },
+    'ATLETISMO':      { v1: '+', v2: '' },
+    'LABIA':          { v1: '-', v2: '' },
+  },
+  'Especialista': {
+    'DECIFRAR':       { v1: '+', v2: '+' },
+    'CRIACAO':        { v1: '+', v2: '' },
+    'ATLETISMO':      { v1: '-', v2: '' },
+  },
+  'Explorador': {
+    'SOBREVIVENCIA':  { v1: '+', v2: '+' },
+    'ESCALADA':       { v1: '+', v2: '' },
+    'NEGOCIACAO':     { v1: '-', v2: '' },
+  },
+  'Astuto': {
+    'DISFARCE':       { v1: '+', v2: '+' },
+    'PERSUASAO':      { v1: '+', v2: '' },
+    'LEVANTAMENTO':   { v1: '-', v2: '' },
+  },
+  'Místico': {
+    'OCULTISMO':      { v1: '+', v2: '+' },
+    'INTUICAO':       { v1: '+', v2: '' },
+    'LEVANTAMENTO':   { v1: '-', v2: '' },
+  },
+  'Artista': {
+    'CRIACAO':        { v1: '+', v2: '+' },
+    'PERSUASAO':      { v1: '+', v2: '' },
+    'RESISTENCIA':    { v1: '-', v2: '' },
+  },
 };
+
+export interface ResumoPontosPericias {
+  negativosManuais: number;
+  pontosComprados: number;
+  pontosDisponiveis: number;
+  pontosRestantes: number;
+}
+
+export function calcularResumoPontos(
+  periciasVal: Record<string, { v1?: string; v2?: string }>,
+  arquetipo: string,
+  nivel: number
+): ResumoPontosPericias {
+  const config = ARQUETIPO_PERICIAS[arquetipo] || {};
+  let negativosManuais = 0;
+  let pontosComprados = 0;
+
+  for (const key of Object.keys(periciasVal || {})) {
+    const v = periciasVal[key] || { v1: '', v2: '' };
+    const arq = config[key];
+
+    // Negativos manuais (não conta o -1 base do arquétipo)
+    if (arq?.v1 === '-') {
+      if (v.v2 === '-') negativosManuais++;
+    } else {
+      if (v.v1 === '-') negativosManuais++;
+      if (v.v2 === '-') negativosManuais++;
+    }
+
+    // Pontos comprados (não conta o +2 ou +1 base do arquétipo)
+    if (arq) {
+      if (arq.v1 === '+' && arq.v2 === '') {
+        if (v.v2 === '+') pontosComprados++;
+      }
+    } else {
+      if (v.v1 === '+') pontosComprados++;
+      if (v.v2 === '+') pontosComprados++;
+    }
+  }
+
+  const nivelNum = Number(nivel) || 1;
+  const pontosDisponiveis = 3 + (nivelNum - 1) + negativosManuais;
+  const pontosRestantes = pontosDisponiveis - pontosComprados;
+
+  return {
+    negativosManuais,
+    pontosComprados,
+    pontosDisponiveis,
+    pontosRestantes,
+  };
+}
