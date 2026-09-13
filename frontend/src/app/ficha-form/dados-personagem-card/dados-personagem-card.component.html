@@ -12,7 +12,7 @@
       <label class="label" [ngClass]="{'text-red-600 font-bold': form.get('nomePersonagem')?.invalid && form.get('nomePersonagem')?.touched}">
         Personagem <span class="text-red-500">*</span>
       </label>
-      <input class="input" formControlName="nomePersonagem"
+      <input class="input" formControlName="                   "
              [ngClass]="{'border-red-400 focus:ring-red-400 bg-red-50': form.get('nomePersonagem')?.invalid && form.get('nomePersonagem')?.touched}" />
       <span *ngIf="form.get('nomePersonagem')?.invalid && form.get('nomePersonagem')?.touched" class="text-red-500 text-xs mt-1 block font-medium">Obrigatório para gerar o PDF</span>
     </div>
