@@ -18,8 +18,11 @@
     </div>
 
     <div>
-      <label class="label" for="arquetipo">Arquétipo</label>
-      <select id="arquetipo" class="input" formControlName="arquetipoPersonagem">
+      <label class="label" for="arquetipo" [ngClass]="{'text-red-600 font-bold': form.get('arquetipoPersonagem')?.invalid && form.get('arquetipoPersonagem')?.touched}">
+        Arquétipo <span class="text-red-500">*</span>
+      </label>
+      <select id="arquetipo" class="input" formControlName="arquetipoPersonagem"
+              [ngClass]="{'border-red-400 focus:ring-red-400 bg-red-50': form.get('arquetipoPersonagem')?.invalid && form.get('arquetipoPersonagem')?.touched}">
         <option value="">Selecione um arquétipo</option>
         <option value="Combatente">Combatente</option>
         <option value="Especialista">Especialista</option>
@@ -28,6 +31,7 @@
         <option value="Místico">Místico</option>
         <option value="Artista">Artista</option>
       </select>
+      <span *ngIf="form.get('arquetipoPersonagem')?.invalid && form.get('arquetipoPersonagem')?.touched" class="text-red-500 text-xs mt-1 block font-medium">Obrigatório para gerar o PDF</span>
     </div>
 
     <div>

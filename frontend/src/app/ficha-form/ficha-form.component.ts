@@ -37,7 +37,7 @@ export class FichaFormComponent implements OnInit {
       nomePersonagem: ['', Validators.required],
       sexoPersonagem: [''],
       idadePersonagem: [''],
-      arquetipoPersonagem: [''],
+      arquetipoPersonagem: ['', Validators.required],
       especializacaoPersonagem: [''],
       nivelPersonagem: ['1'],
       expPersonagem: ['0'],
@@ -207,7 +207,7 @@ export class FichaFormComponent implements OnInit {
     this.form.markAllAsTouched();
 
     if (this.gerando || this.form.invalid || !this.periciasValidas) {
-      if (this.form.get('nomePersonagem')?.invalid) {
+      if (this.form.get('nomePersonagem')?.invalid || this.form.get('arquetipoPersonagem')?.invalid) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
       return;
