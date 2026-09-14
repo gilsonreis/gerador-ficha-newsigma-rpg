@@ -67,4 +67,63 @@ describe('FichaFormComponent - Troca de Arquétipo', () => {
     // Saldo volta a 3 pontos livres
     expect(component.pontosSobrando).toBe(3);
   });
+
+  it('deve salvar apenas os dados sorteados no localStorage, ignorando nome e outros dados textuais', () => {
+    component.form.patchValue({
+      nomePersonagem: 'Guerreiro Lendário',
+      nomeJogador: 'Gilson',
+      ambientacao: 'Medieval',
+      atributoForca: 11,
+      atributoDestreza: 10,
+      atributoInteligencia: 9,
+      atributoConstituicao: 12,
+      atributoCarisma: 8,
+      pontosDeVida: 25,
+      pontosDeInstamina: 12,
+      dinheiro: 70,
+      sorte: 10,
+    });
+
+    component.salvarNoLocalStorage();
+
+    const salvo = JSON.parse(localStorage.getItem('fichaSigmaState') || '{}');
+    expect(salvo.sorteados).toBeDefined();
+    // Campos sorteados devem estar salvos
+    expect(salvo.sorteados.atributoForca).toBe(11);
+    expect(salvo.sorteados.atributoDestreza).toBe(10);
+    expect(salvo.sorteados.atributoInteligencia).toBe(9);
+    expect(salvo.sorteados.atributoConstituicao).toBe(12);
+    expect(salvo.sorteados.atributoCarisma).toBe(8);
+    expect(salvo.sorteados.pontosDeVida).toBe(25);
+    expect(salvo.sorteados.pontosDeInstamina).toBe(12);
+    expect(salvo.sorteados.dinheiro).toBe(70);
+    expect(salvo.sorteados.sorte).toBe(10);
+
+    // Campos descritivos/livres NÃO devem estar no localStorage
+    expect(salvo.sorteados.nomePersonagem).toBeUndefined();
+    expect(salvo.sorteados.nomeJogador).toBeUndefined();
+    expect(salvo.sorteados.ambientacao).toBeUndefined();
+    expect(salvo.form).toBeUndefined();
+  });
+
+  it('não deve restaurar nomePersonagem mesmo se houver dado legado no localStorage', () => {
+    // Simula dado antigo no localStorage com nomePersonagem poluído
+    const estadoLegado = {
+      form: {
+        nomePersonagem: 'fdfasfdadfad',
+        atributoForca: 12,
+        pontosDeVida: 20,
+      },
+      rolagensRestantes: 2,
+    };
+    localStorage.setItem('fichaSigmaState', JSON.stringify(estadoLegado));
+
+    component.carregarDoLocalStorage();
+
+    // Nome não deve ser carregado
+    expect(component.form.get('nomePersonagem')?.value).toBe('');
+    // Atributos e recursos sorteados devem ser carregados
+    expect(component.form.get('atributoForca')?.value).toBe(12);
+    expect(component.form.get('pontosDeVida')?.value).toBe(20);
+  });
 });

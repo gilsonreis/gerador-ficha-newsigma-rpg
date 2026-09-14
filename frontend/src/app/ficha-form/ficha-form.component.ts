@@ -106,9 +106,22 @@ export class FichaFormComponent implements OnInit {
   }
 
   // --- PERSISTÊNCIA (LOCALSTORAGE) ---
+  // Salva apenas os dados sorteados (atributos, PV, Estamina, Dinheiro e Sorte), além do estado das rolagens extras
   salvarNoLocalStorage() {
+    const sorteados = {
+      atributoForca: this.form.get('atributoForca')?.value ?? null,
+      atributoDestreza: this.form.get('atributoDestreza')?.value ?? null,
+      atributoInteligencia: this.form.get('atributoInteligencia')?.value ?? null,
+      atributoConstituicao: this.form.get('atributoConstituicao')?.value ?? null,
+      atributoCarisma: this.form.get('atributoCarisma')?.value ?? null,
+      pontosDeVida: this.form.get('pontosDeVida')?.value ?? null,
+      pontosDeInstamina: this.form.get('pontosDeInstamina')?.value ?? null,
+      dinheiro: this.form.get('dinheiro')?.value ?? null,
+      sorte: this.form.get('sorte')?.value ?? null,
+    };
+
     const estado = {
-      form: this.form.getRawValue(),
+      sorteados,
       rolagensRestantes: this.rolagensRestantes,
       valorRoladoExtra: this.valorRoladoExtra
     };
@@ -121,9 +134,26 @@ export class FichaFormComponent implements OnInit {
       try {
         this.isCarregando = true;
         const estado = JSON.parse(salvo);
-        if (estado.form) {
-          this.form.patchValue(estado.form);
+        
+        if (estado.sorteados) {
+          this.form.patchValue(estado.sorteados);
+        } else if (estado.form) {
+          // Compatibilidade com formato legado: restaura EXCLUSIVAMENTE os campos sorteados
+          this.form.patchValue({
+            atributoForca: estado.form.atributoForca ?? null,
+            atributoDestreza: estado.form.atributoDestreza ?? null,
+            atributoInteligencia: estado.form.atributoInteligencia ?? null,
+            atributoConstituicao: estado.form.atributoConstituicao ?? null,
+            atributoCarisma: estado.form.atributoCarisma ?? null,
+            pontosDeVida: estado.form.pontosDeVida ?? null,
+            pontosDeInstamina: estado.form.pontosDeInstamina ?? null,
+            dinheiro: estado.form.dinheiro ?? null,
+            sorte: estado.form.sorte ?? null,
+          });
+          // Regrava no localStorage para eliminar os campos indesejados antigos
+          this.salvarNoLocalStorage();
         }
+
         if (estado.rolagensRestantes !== undefined) this.rolagensRestantes = estado.rolagensRestantes;
         if (estado.valorRoladoExtra !== undefined) this.valorRoladoExtra = estado.valorRoladoExtra;
         
